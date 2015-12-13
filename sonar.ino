@@ -42,7 +42,7 @@ void loop() {
   
   if (loopCounter == loopLimit)
   {
-     Serial.print(avgCm / loopLimit); Serial.print(" "); Serial.println(micros());
+     Serial.print(avgCm / loopLimit); //Serial.print(" "); Serial.println(micros());
      avgCm = 0;
      loopCounter = 0; 
   }
