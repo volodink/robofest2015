@@ -2,6 +2,7 @@ int echoPin = 9;
 int trigPin = 8; 
 int modePin = 3;
 int loopLimitPin = 4;
+int globalMode = 2;
 
 unsigned char loopCounter = 0;
 double avgCm = 0.0;
@@ -14,9 +15,13 @@ void setup() {
   pinMode(echoPin, INPUT); 
   pinMode(modePin, INPUT);
   pinMode(loopLimitPin, INPUT);
+  pinMode(globalMode, INPUT);
 } 
 
-void loop() { 
+void loop()
+{ 
+  if (digitalRead(globalMode) == 1)
+  {
   int duration;
   double cm; 
   digitalWrite(trigPin, LOW); 
@@ -50,5 +55,11 @@ void loop() {
   {
     avgCm += cm;
     loopCounter++;
-  }    
+  }   
+  }
+ else
+ {
+  Serial.print(analogRead(A0)); Serial.print(" "); Serial.println(analogRead(A1));   
+  delay(250); 
+ }
 }
